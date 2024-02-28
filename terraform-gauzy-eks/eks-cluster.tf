@@ -1,3 +1,7 @@
+locals {
+  cluster_name = "${var.environment}-eks"
+}
+
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "~> 20.0"
@@ -20,7 +24,7 @@ module "eks" {
   }
   
   vpc_id                   =  data.terraform_remote_state.vpc.outputs.vpc_id
-  subnet_ids               =  data.terraform_remote_state.vpc.outputs.private_subnets
+  subnet_ids               =  data.terraform_remote_state.vpc.outputs.private-subnet_id
   # EKS Managed Node Group(s)
   eks_managed_node_group_defaults = {
     instance_types = ["m6i.large", "m5.large", "m5n.large", "m5zn.large"]
@@ -89,5 +93,4 @@ resource "aws_iam_role" "this" {
       },
     ]
   })
-
 }

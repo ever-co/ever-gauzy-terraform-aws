@@ -1,0 +1,64 @@
+webapp:
+  baseUrls:
+    api: "https://apidemo.gauzy.co"
+    client: "https://demo.gauzy.co"
+
+  cloudinary:
+    apiKey: "256868982483961"
+    cloudName: "dv6ezkfxg"
+
+  googleMap:
+    apiKey: "AIzaSyCJmnKzgTSq5Pc93HXar5bZrdmANTwtSIo"
+    defaultLatitude: "42.6459136"
+    defaultLongitude: "23.3332736"
+
+  ingress:
+    enabled: true
+    className: "nginx"
+    annotations: 
+      kubernetes.io/ingress.class: nginx
+      # kubernetes.io/tls-acme: "true"
+    hosts:
+      - host: demo.gauzy.co
+        paths:
+          - path: /
+            pathType: Prefix
+    # tls:
+    #  - secretName: chart-example-tls
+    #    hosts:
+    #      - demo.gauzy.co
+  envs:
+    - name: SENTRY_DSN
+      value: "https://7cd381188b6f446ca0e69185227b9031@o51327.ingest.sentry.io/4397292"
+    - name: CHATWOOT_SDK_TOKEN
+      value: "jFoSXEjGmqhUhqU3zfgkFfMt"
+
+ever-gauzy-api:
+  global:
+    env:
+      production: false
+    baseUrls:
+      api: "https://apidemo.gauzy.co"
+      client: "https://demo.gauzy.co"
+  loglevel: "info"
+  adminPasswordReset: true
+  sentry:
+    sentryDsn: "https://7cd381188b6f446ca0e69185227b9031@o51327.ingest.sentry.io/4397292"
+  ingress:
+    enabled: true
+    className: "nginx"
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      # kubernetes.io/tls-acme: "true"
+    hosts:
+      - host: apidemo.gauzy.co
+        paths:
+          - path: /
+            pathType: Prefix
+    # tls:
+    #  - secretName: chart-example-tls
+    #    hosts:
+    #      - apidemo.gauzy.co
+  envs:
+    - name: EXPRESS_SESSION_SECRET
+      value: "gauzy"
