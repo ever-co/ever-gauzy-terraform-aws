@@ -14,6 +14,7 @@ module gauzy {
     recreate_pods = true
     deploy        = 1
   }
+  
   values = [templatefile("values.yaml", {
   //  region                = var.region
     //storage               = "4Gi"
