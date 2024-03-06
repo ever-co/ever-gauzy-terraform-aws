@@ -3,7 +3,6 @@ module "rds" {
   version = "6.4.0"
   identifier = "${var.environment}-rds"
 
-  # All available versions: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts
   engine               = "postgres"
   engine_version       = "14"
   family               = "postgres14" # DB parameter group
@@ -13,14 +12,11 @@ module "rds" {
   allocated_storage     = 20
   max_allocated_storage = 100
 
-  # NOTE: Do NOT use 'user' as the value for 'username' as it throws:
-  # "Error creating DB Instance: InvalidParameterValue: MasterUsername
-  # user cannot be used as it is a reserved word used by the engine"
   db_name  = "completePostgresql"
   username = "complete_postgresql"
   port     = 5432
   password = "postgres1234"
-  # setting manage_master_user_password_rotation to false after it
+  
   # has been set to true previously disables automatic rotation
   manage_master_user_password_rotation              = false
   master_user_password_rotate_immediately           = false
@@ -44,7 +40,6 @@ module "rds" {
   create_monitoring_role                = true
   monitoring_interval                   = 60
   monitoring_role_name                  = "MyRDSMonitoringRole"
-  create_monitoring_role = true
 
   parameters = [
     {
