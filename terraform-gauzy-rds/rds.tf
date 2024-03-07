@@ -5,8 +5,8 @@ module "rds" {
 
   engine               = "postgres"
   engine_version       = "14"
-  family               = "postgres14" # DB parameter group
-  major_engine_version = "14"         # DB option group
+  family               = "postgres14" 
+  major_engine_version = "14"         
   instance_class       = "db.t4g.large"
 
   allocated_storage     = 20
@@ -16,8 +16,7 @@ module "rds" {
   username = "complete_postgresql"
   port     = 5432
   password = "postgres1234"
-  
-  # has been set to true previously disables automatic rotation
+
   manage_master_user_password_rotation              = false
   master_user_password_rotate_immediately           = false
   master_user_password_rotation_schedule_expression = "rate(15 days)"
