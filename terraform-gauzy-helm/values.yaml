@@ -59,6 +59,26 @@ ever-gauzy-api:
     #  - secretName: chart-example-tls
     #    hosts:
     #      - apidemo.gauzy.co
+  postgresql:
+    global:
+      imageRegistry: ""
+      imagePullSecrets: []
+      ##
+      storageClass: ""
+      postgresql:
+        auth:
+          postgresPassword: ""
+          username: ""
+          password: ""
+          database: ""
+          existingSecret: ""
+          secretKeys:
+            adminPasswordKey: ""
+            userPasswordKey: ""
+            replicationPasswordKey: ""
+        service:
+          ports:
+            postgresql: ""
   envs:
     - name: EXPRESS_SESSION_SECRET
       value: "gauzy"

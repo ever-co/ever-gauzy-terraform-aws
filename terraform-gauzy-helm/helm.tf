@@ -16,8 +16,12 @@ module gauzy {
   }
   
   values = [templatefile("values.yaml", {
-  //  region                = var.region
-    //storage               = "4Gi"
+    ever-gauzy-api.postgresql.global.external_db                         = true
+    ever-gauzy-api.postgresql.global.postgresql.auth.host                = data.terraform_remote_state.rds.outputs.db_instance_address
+    ever-gauzy-api.postgresql.global.postgresql.auth.username            = data.terraform_remote_state.rds.outputs.db_instance_username
+    ever-gauzy-api.postgresql.global.postgresql.auth.password            = data.terraform_remote_state.rds.outputs.db_instance_endpoint
+    ever-gauzy-api.postgresql.global.postgresql.auth.database            = data.terraform_remote_state.rds.outputs.db_instance_name
+    ever-gauzy-api.postgresql.global.postgresql.service.ports.postgresql = data.terraform_remote_state.rds.outputs.db_instance_port
   })]
 
   set = [
