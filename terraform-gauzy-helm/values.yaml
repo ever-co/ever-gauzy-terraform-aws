@@ -36,7 +36,7 @@ webapp:
 ever-gauzy-api:
   global:
     env:
-      production: false
+      production: true
     baseUrls:
       api: "https://apidemo.gauzy.co"
       client: "https://demo.gauzy.co"

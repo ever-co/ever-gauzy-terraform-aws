@@ -15,16 +15,35 @@ module gauzy {
     deploy        = 1
   }
   
-  values = [templatefile("values.yaml", {
-    ever-gauzy-api.postgresql.global.external_db                         = true
-    ever-gauzy-api.postgresql.global.postgresql.auth.host                = data.terraform_remote_state.rds.outputs.db_instance_address
-    ever-gauzy-api.postgresql.global.postgresql.auth.username            = data.terraform_remote_state.rds.outputs.db_instance_username
-    ever-gauzy-api.postgresql.global.postgresql.auth.password            = data.terraform_remote_state.rds.outputs.db_instance_endpoint
-    ever-gauzy-api.postgresql.global.postgresql.auth.database            = data.terraform_remote_state.rds.outputs.db_instance_name
-    ever-gauzy-api.postgresql.global.postgresql.service.ports.postgresql = data.terraform_remote_state.rds.outputs.db_instance_port
-  })]
+  values = [file("values.yaml")]
 
   set = [
+
+    {
+      name  = "ever-gauzy-api.postgresql.global.external_db"
+      value = true
+    },
+    {
+      name  = "ever-gauzy-api.postgresql.global.postgresql.auth.host"
+      value = data.terraform_remote_state.rds.outputs.db_instance_address
+    },
+    {
+      name  = "ever-gauzy-api.postgresql.global.postgresql.auth.username"
+      value = data.terraform_remote_state.rds.outputs.db_instance_username
+    },
+    {
+      name  = "ever-gauzy-api.postgresql.global.postgresql.auth.password"
+      value = "postgres1234"
+    },
+    {
+      name  = "data.terraform_remote_state.rds.outputs.db_instance_name"
+      value = data.terraform_remote_state.rds.outputs.db_instance_name
+    },
+    {
+      name  = "ever-gauzy-api.postgresql.global.postgresql.service.ports.postgresql"
+      value = ""
+      #tostring(data.terraform_remote_state.rds.outputs.db_instance_port)
+    },
     {
       name  = "labels.kubernetes\\.io/name"
       value = "ever-gauzy"
