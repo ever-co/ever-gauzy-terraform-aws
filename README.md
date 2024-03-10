@@ -4,7 +4,7 @@
 [uri_license]: https://www.gnu.org/licenses/agpl-3.0.html
 [uri_license_image]: https://img.shields.io/badge/License-AGPL%20v3-blue.svg
 
-![visitors](https://visitor-badge.laobi.icu/badge?page_id=ever-co.ever-gauzy-terraform)
+![visitors](https://visitor-badge.laobi.icu/badge?page_id=ever-co.ever-gauzy-terraform-aws)
 [![License: AGPL v3][uri_license_image]][uri_license]
 
 ## 🌟 What is it
