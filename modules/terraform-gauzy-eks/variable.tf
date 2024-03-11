@@ -7,3 +7,14 @@ variable "cluster_version" {
   type        = string
   default     = "1.28"
 }
+
+variable "region" {
+  type = string
+  default = "us-east-1"
+}
+
+variable "private-subnet_id" {
+}
+
+variable "vpc_id" { 
+}

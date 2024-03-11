@@ -1,5 +1,5 @@
 variable "environment" {
-  default = "ever-gauzy"
+  default = "demo"
 }
 
 variable "vpc_cidr" {
@@ -17,4 +17,9 @@ variable "private_subnet_cidr" {
 
 variable "database_subnet_cidr" {
   default = ["10.0.4.0/24", "10.0.5.0/24"]
+}
+
+variable "region" {
+  type = string
+  default = "us-east-1"
 }

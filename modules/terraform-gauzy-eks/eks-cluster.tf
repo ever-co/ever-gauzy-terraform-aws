@@ -23,8 +23,8 @@ module "eks" {
     }
   }
   
-  vpc_id                   =  data.terraform_remote_state.vpc.outputs.vpc_id
-  subnet_ids               =  data.terraform_remote_state.vpc.outputs.private-subnet_id
+  vpc_id                   =  var.vpc_id
+  subnet_ids               =  var.private-subnet_id
   # EKS Managed Node Group(s)
   eks_managed_node_group_defaults = {
     instance_types = ["m6i.large", "m5.large", "m5n.large", "m5zn.large"]

@@ -22,7 +22,7 @@ module "rds" {
   master_user_password_rotation_schedule_expression = "rate(15 days)"
 
   multi_az               = true
-  db_subnet_group_name   = data.terraform_remote_state.vpc.outputs.database_subnet_group
+  db_subnet_group_name   = var.database_subnet_group
   vpc_security_group_ids = [module.security_group.security_group_id]
 
   maintenance_window              = "Mon:00:00-Mon:03:00"

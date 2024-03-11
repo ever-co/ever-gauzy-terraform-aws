@@ -6,16 +6,16 @@ module gauzy {
   repository =  "https://charts.ever.co"
 
   app = {
-    name          = "ever-gauzy"
-    version       = "0.1.9"
-    chart         = "ever-gauzy"
+    name            = var.name
+    version         = var.h_version
+    chart           = var.chart 
     force_update  = true
     wait          = false
     recreate_pods = true
     deploy        = 1
   }
   
-  values = [file("values.yaml")]
+  values = [file("${path.module}/values.yaml")]
 
   set = [
 
@@ -25,11 +25,11 @@ module gauzy {
     },
     {
       name  = "ever-gauzy-api.postgresql.global.postgresql.auth.host"
-      value = data.terraform_remote_state.rds.outputs.db_instance_address
+      value = var.db_instance_address
     },
     {
       name  = "ever-gauzy-api.postgresql.global.postgresql.auth.username"
-      value = data.terraform_remote_state.rds.outputs.db_instance_username
+      value = var.db_instance_username
     },
     {
       name  = "ever-gauzy-api.postgresql.global.postgresql.auth.password"
@@ -37,7 +37,7 @@ module gauzy {
     },
     {
       name  = "data.terraform_remote_state.rds.outputs.db_instance_name"
-      value = data.terraform_remote_state.rds.outputs.db_instance_name
+      value = var.db_instance_name
     },
     {
       name  = "ever-gauzy-api.postgresql.global.postgresql.service.ports.postgresql"

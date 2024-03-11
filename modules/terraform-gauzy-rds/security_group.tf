@@ -4,7 +4,7 @@ module "security_group" {
 
   name        = "${var.environment}-rds-sg"
   description = "Complete PostgreSQL example security group"
-  vpc_id      = data.terraform_remote_state.vpc.outputs.vpc_id
+  vpc_id      = var.vpc_id
 
   # ingress
   ingress_with_cidr_blocks = [
@@ -13,7 +13,7 @@ module "security_group" {
       to_port     = 5432
       protocol    = "tcp"
       description = "PostgreSQL access from within VPC"
-      cidr_blocks = data.terraform_remote_state.vpc.outputs.vpc_cidr
+      cidr_blocks = var.vpc_cidr
     },
   ]
 
