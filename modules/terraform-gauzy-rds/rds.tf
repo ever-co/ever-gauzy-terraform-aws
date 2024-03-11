@@ -3,19 +3,19 @@ module "rds" {
   version = "6.4.0"
   identifier = "${var.environment}-rds"
 
-  engine               = "postgres"
-  engine_version       = "14"
-  family               = "postgres14" 
-  major_engine_version = "14"         
+  engine               = var.engine
+  engine_version       = var.engine_version
+  family               = var.family 
+  major_engine_version = var.major_engine_version         
   instance_class       = "db.t4g.large"
 
   allocated_storage     = 20
   max_allocated_storage = 100
 
-  db_name  = "completePostgresql"
-  username = "complete_postgresql"
-  port     = 5432
-  password = "postgres1234"
+  db_name  = var.db_name
+  username = var.username
+  port     = var.port
+  password = var.password
 
   manage_master_user_password_rotation              = false
   master_user_password_rotate_immediately           = false

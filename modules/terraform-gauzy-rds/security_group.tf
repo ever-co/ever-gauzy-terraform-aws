@@ -3,16 +3,16 @@ module "security_group" {
   version = "~> 5.0"
 
   name        = "${var.environment}-rds-sg"
-  description = "Complete PostgreSQL example security group"
+  description = "Complete DB example security group"
   vpc_id      = var.vpc_id
 
   # ingress
   ingress_with_cidr_blocks = [
     {
-      from_port   = 5432
-      to_port     = 5432
+      from_port   = var.port
+      to_port     = var.port
       protocol    = "tcp"
-      description = "PostgreSQL access from within VPC"
+      description = "DB access from within VPC"
       cidr_blocks = var.vpc_cidr
     },
   ]
