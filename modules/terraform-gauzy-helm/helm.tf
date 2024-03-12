@@ -68,13 +68,5 @@ module gauzy {
       name  = "webapp.tls.secretName"
       value = var.web_secretName
     },
-    {
-      name  = "labels.kubernetes\\.io/name"
-      value = "ever-gauzy"
-    },
-    {
-      name  = "service.labels.kubernetes\\.io/name"
-      value = "ever-gauzy"
-    },
   ]
 }
