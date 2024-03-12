@@ -22,6 +22,9 @@ variable "chart" {
   default = "ever-gauzy"
 }
 
+variable "external_db" {
+}
+
 variable "cluster_endpoint" {
 }
 

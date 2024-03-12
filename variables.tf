@@ -149,6 +149,11 @@ variable "chart" {
   default = "ever-gauzy"
 }
 
+variable "external_db" {
+  type = bool
+  default = true
+}
+
 variable "api_host" {
   type = string
   default = "apidemo.gauzy.co"
