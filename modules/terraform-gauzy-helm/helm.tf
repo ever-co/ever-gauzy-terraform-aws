@@ -45,6 +45,30 @@ module gauzy {
       #tostring(data.terraform_remote_state.rds.outputs.db_instance_port)
     },
     {
+      name  = "ever-gauzy-api.global.hosts.host"
+      value = var.api_host
+    },
+    {
+      name  = "ever-gauzy-api.global.tls.hosts[0]"
+      value = var.api_host
+    },
+    {
+      name  = "ever-gauzy-api.global.tls.secretName"
+      value = var.api_secretName
+    },
+    {
+      name  = "webapp.hosts.host"
+      value = var.web_host
+    },
+    {
+      name  = "webapp.tls.hosts[0]"
+      value = var.web_host
+    },
+    {
+      name  = "webapp.tls.secretName"
+      value = var.web_secretName
+    },
+    {
       name  = "labels.kubernetes\\.io/name"
       value = "ever-gauzy"
     },

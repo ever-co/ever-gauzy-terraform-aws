@@ -45,6 +45,10 @@ module "helm" {
   name                               = var.name
   h_version                          = var.h_version
   chart                              = var.chart
+  api_host                           = var.api_host
+  api_secretName                     = var.api_secretName
+  web_host                           = var.web_host
+  web_secretName                     = var.web_secretName
   cluster_endpoint                   = module.eks.cluster_endpoint
   cluster_certificate_authority_data = module.eks.cluster_certificate_authority_data
   cluster_name                       = module.eks.cluster_name

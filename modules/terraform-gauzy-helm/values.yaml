@@ -23,10 +23,10 @@ webapp:
         paths:
           - path: /
             pathType: Prefix
-    # tls:
-    #  - secretName: chart-example-tls
-    #    hosts:
-    #      - demo.gauzy.co
+    tls:
+     - secretName: chart-example-tls
+       hosts:
+         - demo.gauzy.co
   envs:
     - name: SENTRY_DSN
       value: "https://7cd381188b6f446ca0e69185227b9031@o51327.ingest.sentry.io/4397292"
@@ -55,10 +55,10 @@ ever-gauzy-api:
         paths:
           - path: /
             pathType: Prefix
-    # tls:
-    #  - secretName: chart-example-tls
-    #    hosts:
-    #      - apidemo.gauzy.co
+    tls:
+     - secretName: chart-example-tls
+       hosts:
+         - apidemo.gauzy.co
   postgresql:
     global:
       imageRegistry: ""

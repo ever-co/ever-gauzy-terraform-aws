@@ -148,3 +148,24 @@ variable "chart" {
   type    = string
   default = "ever-gauzy"
 }
+
+variable "api_host" {
+  type = string
+  default = "apidemo.gauzy.co"
+}
+
+variable "api_secretName" {
+  type = string
+  default = "chart-example-tls"
+}
+
+variable "web_host" {
+  type = string
+  default = "demo.gauzy.co"
+}
+
+variable "web_secretName" {
+  type = string
+  default = "chart-example-tls"
+}
+

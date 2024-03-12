@@ -40,3 +40,15 @@ variable "db_instance_username" {
 
 variable "db_instance_name" {
 }
+
+variable "api_host" {
+}
+
+variable "api_secretName" {
+}
+
+variable "web_host" {
+}
+
+variable "web_secretName" {
+}
