@@ -168,4 +168,3 @@ variable "web_secretName" {
   type = string
   default = "chart-example-tls"
 }
-
