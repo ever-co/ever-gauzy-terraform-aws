@@ -45,6 +45,7 @@ module "helm" {
   name                               = var.name
   h_version                          = var.h_version
   chart                              = var.chart
+  external_db                        = var.external_db
   api_host                           = var.api_host
   api_secretName                     = var.api_secretName
   web_host                           = var.web_host
