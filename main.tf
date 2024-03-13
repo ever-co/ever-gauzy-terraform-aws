@@ -57,3 +57,4 @@ module "helm" {
   db_instance_username               = module.rds.db_instance_username
   db_instance_name                   = module.rds.db_instance_name
 }
+
