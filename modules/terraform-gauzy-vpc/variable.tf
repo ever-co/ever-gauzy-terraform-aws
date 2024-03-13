@@ -23,3 +23,9 @@ variable "region" {
   type = string
   default = "us-east-1"
 }
+
+variable "create_vpc" {
+  type        = bool
+  default     = true
+  description = "Whether to create default VPC or not."
+}

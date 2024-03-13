@@ -2,7 +2,7 @@
 # VPC
 #################################################################
 module "vpc" {
-  #  count       = var.create_vpc ? 1 : 0
+  create_vpc  = var.create_vpc
   source      = "./modules/terraform-gauzy-vpc"
   environment = var.environment
   region      = var.region
@@ -25,7 +25,7 @@ module "rds" {
 # EKS
 #################################################################
 module "eks" {
-  #  count           = var.create_rds ? 1 : 0
+  #  count           = var.create_eks ? 1 : 0
   source            = "./modules/terraform-gauzy-eks"
   environment       = var.environment
   cluster_version   = var.cluster_version
