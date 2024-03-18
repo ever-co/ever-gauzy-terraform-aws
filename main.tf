@@ -2,7 +2,7 @@
 # VPC
 #################################################################
 module "vpc" {
-  count       = var.create_vpc ? 1 : 0
+ // count       = var.create_vpc ? 1 : 0
   source      = "./modules/terraform-gauzy-vpc"
   environment = var.environment
   region      = var.region
