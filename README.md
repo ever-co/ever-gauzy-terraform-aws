@@ -19,27 +19,76 @@ This Terraform module is designed to provision infrastructure components require
 - Terraform installed on your local machine
 - AWS credentials configured with the necessary permissions
 
-### Example
+
+## Modules
+
+### VPC
+
+The VPC module creates a Virtual Private Cloud (VPC) with public and private subnets.
 
 ```hcl
-module "gauzy_infrastructure" {
-  source    = "git::https://github.com/your-repo/terraform-gauzy-infrastructure.git"
-  environment           = "demo"
-  region                = "us-east-1"
-  create_vpc            = true
-  create_rds            = true
-  create_eks            = true
-  create_helm           = true
-  cluster_version       = "1.28"
-  name                  = "ever-gauzy"
-  h_version             = "0.1.9"
-  chart                 = "ever-gauzy"
-  external_db           = true
-  api_host              = "apidemo.gauzy.co"
-  api_secretName        = "chart-example-tls"
-  web_host              = "demo.gauzy.co"
-  web_secretName        = "chart-example-tls"
+module "vpc" {
+  source      = "./modules/terraform-gauzy-vpc"
+  environment = var.environment
+  region      = var.region
 }
+```
+
+### RDS
+
+The RDS module provisions an RDS instance (PostgreSQL or MySQL) for database needs.
+
+```hcl
+module "rds" {
+  source                = "./modules/terraform-gauzy-rds"
+  environment           = var.environment
+  region                = var.region
+  database_subnet_group = module.vpc.database_subnet_group
+  vpc_cidr              = module.vpc.vpc_cidr
+  vpc_id                = module.vpc.vpc_id
+}
+```
+
+### EKS
+
+The EKS module sets up an Amazon Elastic Kubernetes Service (EKS) cluster for hosting containerized applications.
+
+```hcl
+module "eks" {
+  source            = "./modules/terraform-gauzy-eks"
+  environment       = var.environment
+  cluster_version   = var.cluster_version
+  region            = var.region
+  private-subnet_id = module.vpc.private-subnet_id
+  vpc_id            = module.vpc.vpc_id
+}
+```
+
+### Helm
+
+The Helm module deploys applications using Helm charts, with support for external databases.
+
+```hcl
+module "helm" {
+  source                             = "./modules/terraform-gauzy-helm"
+  environment                        = var.environment
+  region                             = var.region
+  name                               = var.name
+  h_version                          = var.h_version
+  chart                              = var.chart
+  external_db                        = var.external_db
+  api_host                           = var.api_host
+  api_secretName                     = var.api_secretName
+  web_host                           = var.web_host
+  web_secretName                     = var.web_secretName
+  cluster_endpoint                   = module.eks.cluster_endpoint
+  cluster_certificate_authority_data = module.eks.cluster_certificate_authority_data
+  cluster_name                       = module.eks.cluster_name
+  db_instance_address                = module.rds.db_instance_address
+  db_instance_username               = module.rds.db_instance_username
+  db_instance_name                   = module.rds.db_instance_name
+}
+```
 
 ### Inputs
 
