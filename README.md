@@ -1,5 +1,67 @@
 # Ever Gauzy Terraform for AWS Cloud
 
+## Overview
+
+This Terraform module is designed to provision infrastructure components required for a Gauzy application environment in AWS. It includes modules for creating a Virtual Private Cloud (VPC), a Relational Database Service (RDS) instance, an Amazon Elastic Kubernetes Service (EKS) cluster, and deploying applications using Helm charts.
+
+## Features
+
+- Creates a Virtual Private Cloud (VPC) with public and private subnets
+- Provisions an RDS instance (PostgreSQL or MySQL) for database needs
+- Sets up an Amazon EKS cluster for hosting containerized applications
+- Deploys applications using Helm charts, with support for external databases
+- Allows for easy configuration of environment-specific variables
+
+## Usage
+
+### Prerequisites
+
+- Terraform installed on your local machine
+- AWS credentials configured with the necessary permissions
+
+### Example
+
+```hcl
+module "gauzy_infrastructure" {
+  source    = "git::https://github.com/your-repo/terraform-gauzy-infrastructure.git"
+  environment           = "demo"
+  region                = "us-east-1"
+  create_vpc            = true
+  create_rds            = true
+  create_eks            = true
+  create_helm           = true
+  cluster_version       = "1.28"
+  name                  = "ever-gauzy"
+  h_version             = "0.1.9"
+  chart                 = "ever-gauzy"
+  external_db           = true
+  api_host              = "apidemo.gauzy.co"
+  api_secretName        = "chart-example-tls"
+  web_host              = "demo.gauzy.co"
+  web_secretName        = "chart-example-tls"
+}
+
+### Inputs
+
+| Name                  | Description                                     | Type    | Default  |
+|-----------------------|-------------------------------------------------|---------|----------|
+| environment           | The environment to provision infrastructure for | string  | demo     |
+| region                | The AWS region to deploy resources in           | string  | us-east-1|
+| create_vpc            | Whether to create the VPC or not                | bool    | true     |
+| create_rds            | Whether to create the RDS instance or not       | bool    | false    |
+| create_eks            | Whether to create the EKS cluster or not        | bool    | false    |
+| create_helm           | Whether to deploy applications using Helm       | bool    | false    |
+| cluster_version       | Kubernetes version for the EKS cluster          | string  | 1.28     |
+| name                  | Name of the Helm release                        | string  | ever-gauzy |
+| h_version             | Version of the Helm chart to deploy             | string  | 0.1.9    |
+| chart                 | Name of the Helm chart to deploy                | string  | ever-gauzy |
+| external_db           | Whether to use an external database             | bool    | true     |
+| api_host              | API host for the application                    | string  | apidemo.gauzy.co |
+| api_secretName        | Secret name for API TLS certificate             | string  | chart-example-tls |
+| web_host              | Web host for the application                    | string  | demo.gauzy.co |
+| web_secretName        | Secret name for web TLS certificate             | string  | chart-example-tls |
+
+
 [uri_gauzy]: https://gauzy.co
 [uri_license]: https://www.gnu.org/licenses/agpl-3.0.html
 [uri_license_image]: https://img.shields.io/badge/License-AGPL%20v3-blue.svg
