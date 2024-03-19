@@ -90,25 +90,47 @@ module "helm" {
 }
 ```
 
-### Inputs
+## Input Variables
 
-| Name                  | Description                                     | Type    | Default  |
-|-----------------------|-------------------------------------------------|---------|----------|
-| environment           | The environment to provision infrastructure for | string  | demo     |
-| region                | The AWS region to deploy resources in           | string  | us-east-1|
-| create_vpc            | Whether to create the VPC or not                | bool    | true     |
-| create_rds            | Whether to create the RDS instance or not       | bool    | false    |
-| create_eks            | Whether to create the EKS cluster or not        | bool    | false    |
-| create_helm           | Whether to deploy applications using Helm       | bool    | false    |
-| cluster_version       | Kubernetes version for the EKS cluster          | string  | 1.28     |
-| name                  | Name of the Helm release                        | string  | ever-gauzy |
-| h_version             | Version of the Helm chart to deploy             | string  | 0.1.9    |
-| chart                 | Name of the Helm chart to deploy                | string  | ever-gauzy |
-| external_db           | Whether to use an external database             | bool    | true     |
-| api_host              | API host for the application                    | string  | apidemo.gauzy.co |
-| api_secretName        | Secret name for API TLS certificate             | string  | chart-example-tls |
-| web_host              | Web host for the application                    | string  | demo.gauzy.co |
-| web_secretName        | Secret name for web TLS certificate             | string  | chart-example-tls |
+### VPC Module
+
+| Name         | Description                                      | Type   | Default |
+|--------------|--------------------------------------------------|--------|---------|
+| environment  | The environment to provision infrastructure for | string | demo    |
+| region       | The AWS region to deploy resources in           | string | us-east-1 |
+
+### RDS Module
+
+| Name                  | Description                                      | Type   | Default |
+|-----------------------|--------------------------------------------------|--------|---------|
+| environment           | The environment to provision infrastructure for | string | demo    |
+| region                | The AWS region to deploy resources in           | string | us-east-1 |
+| create_rds            | Whether to create the RDS instance or not       | bool   | false   |
+
+### EKS Module
+
+| Name              | Description                                      | Type   | Default |
+|-------------------|--------------------------------------------------|--------|---------|
+| environment       | The environment to provision infrastructure for | string | demo    |
+| cluster_version   | Kubernetes version for the EKS cluster          | string | 1.28    |
+| region            | The AWS region to deploy resources in           | string | us-east-1 |
+| create_eks        | Whether to create the EKS cluster or not        | bool   | false   |
+
+### Helm Module
+
+| Name                               | Description                                      | Type   | Default |
+|------------------------------------|--------------------------------------------------|--------|---------|
+| environment                        | The environment to provision infrastructure for | string | demo    |
+| region                             | The AWS region to deploy resources in           | string | us-east-1 |
+| name                               | Name of the Helm release                        | string | ever-gauzy |
+| h_version                          | Version of the Helm chart to deploy             | string | 0.1.9   |
+| chart                              | Name of the Helm chart to deploy                | string | ever-gauzy |
+| external_db                        | Whether to use an external database             | bool   | true    |
+| api_host                           | API host for the application                    | string | apidemo.gauzy.co |
+| api_secretName                     | Secret name for API TLS certificate             | string | chart-example-tls |
+| web_host                           | Web host for the application                    | string | demo.gauzy.co |
+| web_secretName                     | Secret name for web TLS certificate             | string | chart-example-tls |
+
 
 
 [uri_gauzy]: https://gauzy.co
