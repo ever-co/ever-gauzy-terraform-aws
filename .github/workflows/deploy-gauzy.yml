@@ -8,7 +8,7 @@ on:
 
 jobs:
   terraform_deploy:
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.RUNNER_LINUX_X64_4 || 'ubuntu-latest' }}
 
     steps:
     - name: Checkout code
