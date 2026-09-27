@@ -29,7 +29,8 @@ webapp:
          - demo.gauzy.co
   envs:
     - name: SENTRY_DSN
-      value: "https://7cd381188b6f446ca0e69185227b9031@o51327.ingest.sentry.io/4397292"
+      # Your own Sentry DSN, or empty to disable Sentry (never Ever's: forks would report into it).
+      value: ""
     - name: CHATWOOT_SDK_TOKEN
       value: "jFoSXEjGmqhUhqU3zfgkFfMt"
 
@@ -43,7 +44,8 @@ ever-gauzy-api:
   loglevel: "info"
   adminPasswordReset: true
   sentry:
-    sentryDsn: "https://7cd381188b6f446ca0e69185227b9031@o51327.ingest.sentry.io/4397292"
+    # Your own Sentry DSN, or empty to disable Sentry (never Ever's: forks would report into it).
+    sentryDsn: ""
   ingress:
     enabled: true
     className: "nginx"
